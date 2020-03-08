@@ -1,0 +1,2 @@
+yeelight
+paho-mqtt
