@@ -6,16 +6,16 @@ import json
 import socket
 import sys
 import time
-import paho.mqtt.client as paho
+#import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
 from yeelight import Bulb
 
 broker = os.environ['MQTT_HOST']
 port = os.environ['MQTT_PORT']
-print("{0}:{1}".format(broker, port))
+#print("{0}:{1}".format(broker, port))
 
-def on_publish(client, userdata, result):  # create function for callback
-    pass
+#def on_publish(client, userdata, result):  # create function for callback
+#    pass
 
 class BulbActions(object):
     def __init__(self, ip):
@@ -83,10 +83,10 @@ def on_message(client, userdata, message):
     if ("set_default" == action):
         return actions.set_default()
 
-mqttclient = paho.Client("yeelight2mqtt")  # create client object
-mqttclient.on_publish = on_publish  # assign function to callback
-mqttclient.connect(broker, port)  # establish connection
-mqttclient.publish('yeelight2mqtt/message', 'waiting for input')
+#mqttclient = paho.Client("yeelight2mqtt")  # create client object
+#mqttclient.on_publish = on_publish  # assign function to callback
+#mqttclient.connect(broker, port)  # establish connection
+#mqttclient.publish('yeelight2mqtt/message', 'waiting for input')
 
 subscribe.callback(on_message, "yeelight2mqtt/bulb/#", hostname=broker, port=port)
 
