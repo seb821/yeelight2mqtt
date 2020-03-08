@@ -1,6 +1,7 @@
 # yeelight2mqtt
 
 simple currently one way set yeelight bulbs.
+Run with docker.
 
 ## Why?
 
@@ -23,10 +24,14 @@ actions can be:
 * set_color_temp (payload: temperature as string)
 
 examples:
-yeelight2mqtt/bulb/192.168.55.19/turn_on
-yeelight2mqtt/bulb/192.168.55.19/set_color_temp , 4700
-yeelight2mqtt/bulb/192.168.55.19/set_rgb, [255, 80, 80]
+* yeelight2mqtt/bulb/192.168.55.19/turn_on
+* yeelight2mqtt/bulb/192.168.55.19/set_color_temp , 4700
+* yeelight2mqtt/bulb/192.168.55.19/set_rgb, [255, 80, 80]
 
-## resources
+## Run in docker
+docker build . -t yeelight2mqtt
+docker run --name yeelight2mqtt -e MQTT_HOST='192.168.0.210' -e MQTT_PORT='1883' -e yeelight2mqtt
+
+## Resources
 
 https://yeelight.readthedocs.io/en/latest/

@@ -10,8 +10,8 @@ import paho.mqtt.client as paho
 import paho.mqtt.subscribe as subscribe
 from yeelight import Bulb
 
-broker = "192.168.0.210" #os.environ['MQTT_HOST']
-port = "1883" #os.environ['MQTT_PORT']
+broker = os.environ['MQTT_HOST']
+port = os.environ['MQTT_PORT']
 print("{0}:{1}".format(broker, port))
 
 def on_publish(client, userdata, result):  # create function for callback
