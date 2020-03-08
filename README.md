@@ -30,6 +30,7 @@ examples:
 
 ## Run in docker
 docker build . -t yeelight2mqtt
+
 docker run --name yeelight2mqtt -e MQTT_HOST='192.168.0.210' -e MQTT_PORT='1883' yeelight2mqtt
 
 ## Resources
