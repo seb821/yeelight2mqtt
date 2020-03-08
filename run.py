@@ -19,7 +19,6 @@ port = os.environ['MQTT_PORT']
 
 class BulbActions(object):
     def __init__(self, ip):
-        print("{0} init".format(ip))
         self.ip = ip
         self.bulb = Bulb(self.ip)
 
@@ -41,16 +40,12 @@ class BulbActions(object):
         self.bulb.toggle()
 
     def set_rgb(self, r, g, b):
-        print("{0} set_rgb({1}, {2}, {3}".format(self.ip, r, g, b))
+        print("{0} set_rgb {1}, {2}, {3}".format(self.ip, r, g, b))
         self.bulb.set_rgb(r, g, b)
 
-    def set_hsv(self, hue, sat, brightness):
-        if (brightness is null):
-            print("{0} set_hsv hue {1}, sat {2}".format(self.ip, hue, sat))
-            self.bulb.set_hsv(hue, sat)
-        else:
-            print("{0} set_hsv hue {1}, sat {2} bri {3}".format(self.ip, hue, sat, brightness))
-            self.bulb.set_hsv(hue, sat, brightness)
+    def set_hsv(self, hue, sat):
+       print("{0} set_hsv hue {1}, sat {2}".format(self.ip, hue, sat))
+       self.bulb.set_hsv(hue, sat)
 
     def set_color_temp(self, temp):
         print("{0} set_color_temp {1}".format(self.ip, temp))
@@ -77,9 +72,9 @@ def on_message(client, userdata, message):
     if ("set_rgb" == action):
         return actions.set_rgb(data[0], data[1], data[2])
     if ("set_hsv" == action):
-        return actions.set_hsv(data[0], data[1], data[2])
+        return actions.set_hsv(data['hue'], data['sat'])
     if ("set_color_temp" == action):
-        return actions.color_temp(data)
+        return actions.set_color_temp(data)
     if ("set_default" == action):
         return actions.set_default()
 
