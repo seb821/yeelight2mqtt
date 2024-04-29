@@ -1,11 +1,10 @@
-FROM debian:stretch
+FROM debian:bullseye-slim
 
-RUN apt-get update && apt-get install -y\
-    python-pip
+RUN apt-get update && apt-get upgrade && apt-get install -y\
+    python3-pip
 
-COPY . ./
+ADD run.py .
 
-RUN pip install -r requirements.txt
+RUN pip install yeelight paho-mqtt
 
-CMD ["python", "-u", "/run.py"]]
-
+CMD ["python3", "-u", "/run.py"]]
